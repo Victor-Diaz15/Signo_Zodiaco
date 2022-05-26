@@ -1,0 +1,45 @@
+﻿@model SignoZodiaco.Models.ZodiacoViewModel;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div style="background-color: #112b3c" class="container-fluid rounded-5 p-3 mt-5">
+    <h1 class="text-center text-white">Guess Your Zodiac Sign</h1>
+    <div class="d-flex flex-row flex-wrap justify-content-center">
+        <form class="row col-6 m-3 justify-content-center" method="post" asp-controller="SignoZodiaco" asp-action="Index">
+            <div class="mb-3">
+                <label class="form-label text-white " asp-for="birthDay">Enter your birthday please!</label>
+                <input class="form-control" type="number" asp-for="birthDay" min="1" max="31" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="month" class="form-label text-white" for="sign">Enter your month please!</label>
+                <select asp-for="month" class="form-select">
+                    <option value="1">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary text-center col mx-3 my-3">Send</button>
+        </form>
+        @*Este card solo se mostrara cuando exista un valor en la variable zodiacSign*@
+        @if (@Model.zodiacSign != null)
+        {
+            <div class="card text-white m-3">
+                <div style="background-color:cadetblue" class="d-flex flex-column justify-content-center align-items-center card-body">
+                    <h5 class="card-title text-center">Your Zodiac Sign Is:</h5>
+                    <h3 class="text-center">@Model?.zodiacSign</h3>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
